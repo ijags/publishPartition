@@ -1,0 +1,16 @@
+server:
+  port: 9090
+spring:
+  cloud:
+    stream:
+      bindings:
+        partitionOrders-out-0:
+          destination: orders_partition_channel
+          producer:
+            partition-count: 3
+            partition-key-expression: headers['partitionKey']
+  rabbitmq:
+    username: guest
+    password: guest
+    host: 127.0.0.1
+    port: 5672
